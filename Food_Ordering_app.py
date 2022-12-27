@@ -57,11 +57,11 @@ class Food_ordering_app:
             self.username = input("Enter your username: ")
             self.password = input("Enter your password: ")
             self.personal_details = {"full name":self.full_name, "phone number": self.phone_no, "email": self.email, "address": self.address, "username": self.username, "password": self.password}
-            f = open("D:\Python\Practise\Food Ordering App\personal_details.json")
+            f = open("personal_details.json")
             previous_data = json.load(f)
             f.close()
             previous_data[self.username]=self.personal_details
-            with open("D:\Python\Practise\Food Ordering App\personal_details.json", "w") as outfile:
+            with open("personal_details.json", "w") as outfile:
                 json.dump(previous_data, outfile)
             print("Congratulations!!\n You have successfully registered your account ")
 
@@ -73,7 +73,7 @@ class Food_ordering_app:
         while True:
             u_name = input("Enter your username: ")
             password = input("Enter your password: ")
-            f = open("D:\Python\Practise\Food Ordering App\personal_details.json")
+            f = open("personal_details.json")
             data = json.load(f)
             u_data = data.get(u_name)    
             if data.get(u_name) and password == u_data.get("password"):
@@ -116,7 +116,7 @@ class Food_ordering_app:
             list_of_order = []
             for i in list_of_food_ids:
                 list_of_order.append(self.menu.get(int(i))) 
-            f = open("D:\Python\Practise\Food Ordering App\order_history.json")
+            f = open("order_history.json")
             previous_data = json.load(f)
             f.close()
             if previous_data.get(self.username):
@@ -125,7 +125,7 @@ class Food_ordering_app:
                 previous_data[self.username] = []
                 previous_data[self.username].append(list_of_order)
             
-            with open("D:\Python\Practise\Food Ordering App\order_history.json", "w") as outfile:
+            with open("order_history.json", "w") as outfile:
                 json.dump(previous_data, outfile)
             print("Thank you, you order has been confirmed Successfully!") 
         
@@ -133,7 +133,7 @@ class Food_ordering_app:
             print("Order cancelled!")
             
     def order_history(self):       
-        f = open("D:\Python\Practise\Food Ordering App\order_history.json")
+        f = open("order_history.json")
         data = json.load(f)
         f.close()
         if data.get(self.username):
@@ -147,11 +147,11 @@ class Food_ordering_app:
     def edit_personal_details(self):
         for i in self.personal_details:
             self.personal_details[i] = input("Enter the {} you want to update".format(i))
-        f = open("D:\Python\Practise\Food Ordering App\personal_details.json")
+        f = open("personal_details.json")
         previous_data = json.load(f)
         f.close()
         previous_data[self.username]=self.personal_details
-        with open("D:\Python\Practise\Food Ordering App\personal_details.json", "w") as outfile:
+        with open("personal_details.json", "w") as outfile:
             json.dump(previous_data, outfile)
         print("Personal details updated successfully \n ",self.personal_details) 
         
